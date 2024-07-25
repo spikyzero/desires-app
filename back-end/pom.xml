@@ -19,7 +19,7 @@
 		<java.version>17</java.version>
 		<commons-lang3.version>3.15.0</commons-lang3.version>
 		<mysql-connector-java.version>8.0.33</mysql-connector-java.version>
-		<hibernate-core.version>6.4.3.Final</hibernate-core.version>
+		<hibernate-core.version>6.5.2.Final</hibernate-core.version>
 	</properties>
 
 	<dependencies>
@@ -63,11 +63,10 @@
 			<version>${mysql-connector-java.version}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core -->
 		<dependency>
 			<groupId>org.hibernate.orm</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>6.5.2.Final</version>
+			<version>${hibernate-core.version}</version>
 		</dependency>
 
 	</dependencies>
