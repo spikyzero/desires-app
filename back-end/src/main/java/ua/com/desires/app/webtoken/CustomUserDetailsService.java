@@ -26,7 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                         .password(userObj.getPassword())
                         .roles(getRoles(userObj))
                         .build())
-                .orElseThrow(() -> new UserNotFoundException(username));
+                .orElseThrow(UserNotFoundException::new);
     }
 
     private String[] getRoles(User user) {
