@@ -21,6 +21,7 @@
         <mysql-connector-java.version>8.0.33</mysql-connector-java.version>
         <hibernate-core.version>6.5.2.Final</hibernate-core.version>
         <map-struct.version>1.5.5.Final</map-struct.version>
+        <jwt.version>0.12.5</jwt.version>
     </properties>
 
     <dependencies>
@@ -91,6 +92,24 @@
             <artifactId>mapstruct-processor</artifactId>
             <version>${map-struct.version}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>${jwt.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>${jwt.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>${jwt.version}</version>
         </dependency>
 
     </dependencies>
