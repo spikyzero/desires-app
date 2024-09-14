@@ -11,6 +11,12 @@ function RegisterForm() {
     });
     const [emailExists, setEmailExists] = useState(false);
     const [passwordsMatch, setPasswordsMatch] = useState(true);
+    const [touched, setTouched] = useState({
+        email: false,
+        name: false,
+        password: false,
+        passwordConfirmation: false,
+    });
 
     const handleChange = (e) => {
         const {id, value} = e.target;
@@ -28,6 +34,10 @@ function RegisterForm() {
 
     const handleBlur = async (e) => {
         const {id, value} = e.target;
+        setTouched(prevTouched => ({
+            ...prevTouched,
+            [id]: true,
+        }));
         if (id === 'email') {
             const result = await UserService.checkExistByEmail(value);
             setEmailExists(result.data);
@@ -42,7 +52,24 @@ function RegisterForm() {
         } else {
             console.error(result.error);
         }
+    };
 
+    const getClassName = (field) => {
+        if (!touched[field]) return 'form-control';
+        if (field === 'email') {
+            if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) return 'form-control is-invalid';
+            if (emailExists) return 'form-control is-invalid';
+        }
+        if (field === 'name') {
+            if (!formData.name) return 'form-control is-invalid';
+        }
+        if (field === 'password') {
+            if (formData.password.length < 6) return 'form-control is-invalid';
+        }
+        if (field === 'passwordConfirmation') {
+            if (!passwordsMatch) return 'form-control is-invalid';
+        }
+        return 'form-control is-valid';
     };
 
     return (
@@ -54,14 +81,14 @@ function RegisterForm() {
                     </label>
                     <input
                         type="email"
-                        className={`form-control ${emailExists ? 'is-invalid' : ''}`}
+                        className={getClassName('email')}
                         id="email"
                         value={formData.email}
                         required
                         onChange={handleChange}
                         onBlur={handleBlur}
                     />
-                    {emailExists && <div className="invalid-feedback">Email already exists</div>}
+                    {touched.email && emailExists && <div className="invalid-feedback">Email already exists</div>}
                 </div>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">
@@ -69,11 +96,12 @@ function RegisterForm() {
                     </label>
                     <input
                         type="text"
-                        className="form-control"
+                        className={getClassName('name')}
                         id="name"
                         value={formData.name}
                         required
                         onChange={handleChange}
+                        onBlur={handleBlur}
                     />
                 </div>
                 <div className="mb-3">
@@ -82,12 +110,13 @@ function RegisterForm() {
                     </label>
                     <input
                         type="password"
-                        className="form-control"
+                        className={getClassName('password')}
                         id="password"
                         value={formData.password}
                         minLength={6}
                         required
                         onChange={handleChange}
+                        onBlur={handleBlur}
                     />
                 </div>
                 <div className="mb-3">
@@ -96,14 +125,16 @@ function RegisterForm() {
                     </label>
                     <input
                         type="password"
-                        className={`form-control ${!passwordsMatch ? 'is-invalid' : ''}`}
+                        className={getClassName('passwordConfirmation')}
                         id="passwordConfirmation"
                         value={formData.passwordConfirmation}
                         minLength={6}
                         required
                         onChange={handleChange}
+                        onBlur={handleBlur}
                     />
-                    {!passwordsMatch && <div className="invalid-feedback">Passwords do not match</div>}
+                    {!passwordsMatch && touched.passwordConfirmation &&
+                        <div className="invalid-feedback">Passwords do not match</div>}
                 </div>
                 <button type="submit" className="btn btn-primary">Register</button>
             </form>
