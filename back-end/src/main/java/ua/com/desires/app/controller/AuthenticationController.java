@@ -48,6 +48,7 @@ public class AuthenticationController {
         return "Welcome to USER home!";
     }
 
+    @CrossOrigin("http://localhost:3000")
     @PostMapping("/authenticate")
     public ResponseEntity<?> authenticateAndGetToken(@Valid @RequestBody UserLoginForm loginForm) {
         try {

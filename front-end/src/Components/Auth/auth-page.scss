@@ -1,0 +1,40 @@
+.auth-page-wrapper {
+  height: 750px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 200px;
+
+  .auth-form-wrapper {
+    display: grid;
+    justify-content: center;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+
+    .auth-switch {
+      height: 45px;
+      width: 300px;
+      margin-bottom: 20px;
+    }
+
+    .auth-form {
+      width: 300px;
+
+      .login-form-wrapper {
+        height: 275px;
+      }
+
+      .register-form-wrapper {
+        height: 450px;
+      }
+
+    }
+
+  }
+
+}
