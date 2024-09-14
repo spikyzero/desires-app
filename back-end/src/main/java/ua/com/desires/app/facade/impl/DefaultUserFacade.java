@@ -64,4 +64,9 @@ public class DefaultUserFacade implements UserFacade {
         userService.deleteUser(id);
     }
 
+    @Override
+    public boolean existUserByEmail(String email) {
+        return userService.existUserByEmail(email);
+    }
+
 }

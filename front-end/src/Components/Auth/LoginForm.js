@@ -45,6 +45,7 @@ function LoginForm() {
                         id="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        required
                     />
                 </div>
                 {error && <div className="alert alert-danger">{error}</div>}

@@ -27,6 +27,7 @@ public class UserController {
         this.userFacade = userFacade;
     }
 
+    @CrossOrigin("http://localhost:3000")
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody UserRegistrationForm userForm) {
         try {
@@ -73,6 +74,13 @@ public class UserController {
         } catch (UserNotFoundException e) {
             return new ResponseEntity<>(new ApiResponse(String.format("Could not delete user by ID: '%d'", id)), HttpStatus.NOT_FOUND);
         }
+    }
+
+    @CrossOrigin("http://localhost:3000")
+    @GetMapping("/exists/email")
+    public ResponseEntity<Boolean> checkUserExistsByEmail(@RequestParam String email) {
+        boolean exists = userFacade.existUserByEmail(email);
+        return ResponseEntity.ok(exists);
     }
 
 }

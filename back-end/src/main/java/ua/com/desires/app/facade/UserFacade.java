@@ -20,4 +20,6 @@ public interface UserFacade {
 
     void deleteUser(Long id);
 
+    boolean existUserByEmail(String email);
+
 }
