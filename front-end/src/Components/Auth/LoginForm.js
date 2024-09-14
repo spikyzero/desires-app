@@ -6,6 +6,7 @@ function LoginForm() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
@@ -15,7 +16,8 @@ function LoginForm() {
             console.log('Login successful', data);
             navigate('/');
         } catch (error) {
-            console.error('Login error:', error);
+            console.log('Incorrect email or password', error);
+            setError('Incorrect email or password');
         }
     };
 
@@ -45,6 +47,7 @@ function LoginForm() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
+                {error && <div className="alert alert-danger">{error}</div>}
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
         </div>
