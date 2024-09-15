@@ -49,6 +49,7 @@ function RegisterForm() {
             const data = await AuthService.login(formData.email, formData.password);
             console.log('Login successful', data);
             navigate('/');
+            alert('User registered successfully!');
         } else {
             console.error(result.error);
         }
