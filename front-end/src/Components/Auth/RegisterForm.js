@@ -11,12 +11,6 @@ function RegisterForm() {
     });
     const [emailExists, setEmailExists] = useState(false);
     const [passwordsMatch, setPasswordsMatch] = useState(true);
-    const [touched, setTouched] = useState({
-        email: false,
-        name: false,
-        password: false,
-        passwordConfirmation: false,
-    });
 
     const handleChange = (e) => {
         const {id, value} = e.target;
@@ -34,10 +28,6 @@ function RegisterForm() {
 
     const handleBlur = async (e) => {
         const {id, value} = e.target;
-        setTouched(prevTouched => ({
-            ...prevTouched,
-            [id]: true,
-        }));
         if (id === 'email') {
             const result = await UserService.checkExistByEmail(value);
             setEmailExists(result.data);
@@ -46,6 +36,10 @@ function RegisterForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (emailExists || !passwordsMatch) {
+            console.log('Invalid form')
+            return;
+        }
         const result = await UserService.register(formData);
         if (result.success) {
             console.log('User registered:', result.data);
@@ -55,9 +49,11 @@ function RegisterForm() {
     };
 
     const getClassName = (field) => {
-        if (!touched[field]) return 'form-control';
+        if (!formData[field]) return 'form-control'
         if (field === 'email') {
-            if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) return 'form-control is-invalid';
+            if (!formData.email || !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(formData.email)) {
+                return 'form-control is-invalid';
+            }
             if (emailExists) return 'form-control is-invalid';
         }
         if (field === 'name') {
@@ -67,7 +63,10 @@ function RegisterForm() {
             if (formData.password.length < 6) return 'form-control is-invalid';
         }
         if (field === 'passwordConfirmation') {
-            if (!passwordsMatch) return 'form-control is-invalid';
+            if (formData.password) {
+                if (formData.password.length < 6 || !passwordsMatch) return 'form-control is-invalid';
+            }
+            if (formData.passwordConfirmation.length < 6) return 'form-control is-invalid';
         }
         return 'form-control is-valid';
     };
@@ -88,7 +87,7 @@ function RegisterForm() {
                         onChange={handleChange}
                         onBlur={handleBlur}
                     />
-                    {touched.email && emailExists && <div className="invalid-feedback">Email already exists</div>}
+                    {formData.email && emailExists && <div className="invalid-feedback">Email already exists</div>}
                 </div>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">
@@ -133,7 +132,7 @@ function RegisterForm() {
                         onChange={handleChange}
                         onBlur={handleBlur}
                     />
-                    {!passwordsMatch && touched.passwordConfirmation &&
+                    {!passwordsMatch && formData.password && formData.passwordConfirmation &&
                         <div className="invalid-feedback">Passwords do not match</div>}
                 </div>
                 <button type="submit" className="btn btn-primary">Register</button>
