@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import UserService from "../../common/services/UserService";
+import AuthService from "../../common/services/AuthService";
+import {useNavigate} from "react-router-dom";
 
 function RegisterForm() {
 
@@ -11,6 +13,7 @@ function RegisterForm() {
     });
     const [emailExists, setEmailExists] = useState(false);
     const [passwordsMatch, setPasswordsMatch] = useState(true);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const {id, value} = e.target;
@@ -43,6 +46,9 @@ function RegisterForm() {
         const result = await UserService.register(formData);
         if (result.success) {
             console.log('User registered:', result.data);
+            const data = await AuthService.login(formData.email, formData.password);
+            console.log('Login successful', data);
+            navigate('/');
         } else {
             console.error(result.error);
         }
