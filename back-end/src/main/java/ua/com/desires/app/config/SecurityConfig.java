@@ -42,6 +42,7 @@ public class SecurityConfig {
                     registry.requestMatchers("/api/v1/users/exists/email").permitAll();
                     registry.requestMatchers("/api/v1/users/register").permitAll();
                     registry.requestMatchers("/api/v1/users/login").permitAll();
+                    registry.requestMatchers("/api/v1/desires/**").permitAll();
                     registry.anyRequest().authenticated();
                 })
                 .formLogin(AbstractHttpConfigurer::disable)
