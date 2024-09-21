@@ -10,7 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
-import ua.com.desires.app.controller.form.UserLoginForm;
+import ua.com.desires.app.controller.form.user.UserLoginForm;
 import ua.com.desires.app.controller.response.ApiResponse;
 import ua.com.desires.app.controller.response.JwtResponse;
 import ua.com.desires.app.webtoken.CustomUserDetailsService;

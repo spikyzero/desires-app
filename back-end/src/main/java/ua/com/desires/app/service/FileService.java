@@ -6,4 +6,6 @@ public interface FileService {
 
     String uploadFile(MultipartFile file, String fileName);
 
+    String getImageBase64(String imageURL);
+
 }

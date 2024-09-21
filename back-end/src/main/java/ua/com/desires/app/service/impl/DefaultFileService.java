@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Base64;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -26,6 +27,17 @@ public class DefaultFileService implements FileService {
             return filePath.toString();
         } catch (IOException e) {
             throw new RuntimeException("Failed to store file", e);
+        }
+    }
+
+    @Override
+    public String getImageBase64(String imageURL) {
+        try {
+            Path filePath = Paths.get(imageURL);
+            byte[] fileBytes = Files.readAllBytes(filePath);
+            return Base64.getEncoder().encodeToString(fileBytes);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to read file", e);
         }
     }
 
