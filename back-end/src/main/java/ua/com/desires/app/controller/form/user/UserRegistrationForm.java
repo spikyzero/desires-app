@@ -1,4 +1,4 @@
-package ua.com.desires.app.controller.form;
+package ua.com.desires.app.controller.form.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

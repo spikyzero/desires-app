@@ -1,8 +1,8 @@
 package ua.com.desires.app.facade;
 
 import ua.com.desires.app.controller.dto.UserDTO;
-import ua.com.desires.app.controller.form.UserRegistrationForm;
-import ua.com.desires.app.controller.form.UserUpdateForm;
+import ua.com.desires.app.controller.form.user.UserRegistrationForm;
+import ua.com.desires.app.controller.form.user.UserUpdateForm;
 
 import java.util.List;
 

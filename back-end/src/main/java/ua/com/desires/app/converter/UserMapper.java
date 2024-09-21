@@ -3,8 +3,8 @@ package ua.com.desires.app.converter;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import ua.com.desires.app.controller.dto.UserDTO;
-import ua.com.desires.app.controller.form.UserRegistrationForm;
-import ua.com.desires.app.controller.form.UserUpdateForm;
+import ua.com.desires.app.controller.form.user.UserRegistrationForm;
+import ua.com.desires.app.controller.form.user.UserUpdateForm;
 import ua.com.desires.app.model.User;
 
 @Mapper(componentModel = "spring")

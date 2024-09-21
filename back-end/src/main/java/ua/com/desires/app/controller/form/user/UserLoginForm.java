@@ -1,7 +1,6 @@
-package ua.com.desires.app.controller.form;
+package ua.com.desires.app.controller.form.user;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,12 +11,10 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserUpdateForm {
+public class UserLoginForm {
 
     @Email(message = "Email should be valid")
-    @NotBlank(message = "Email is required")
     String email;
-    @NotBlank(message = "Name is required")
-    String name;
+    String password;
 
 }
