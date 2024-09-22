@@ -35,7 +35,12 @@ public class DefaultFileService implements FileService {
         try {
             Path filePath = Paths.get(imageURL);
             byte[] fileBytes = Files.readAllBytes(filePath);
-            return Base64.getEncoder().encodeToString(fileBytes);
+            String mimeType = Files.probeContentType(filePath);
+            if (mimeType == null) {
+                mimeType = "application/octet-stream";
+            }
+            String base64Image = Base64.getEncoder().encodeToString(fileBytes);
+            return "data:" + mimeType + ";base64," + base64Image;
         } catch (IOException e) {
             throw new RuntimeException("Failed to read file", e);
         }

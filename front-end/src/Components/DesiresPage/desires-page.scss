@@ -1,0 +1,56 @@
+.desires-page-wrapper {
+
+  .cards-wrapper {
+    background-color: rgb(240, 240, 240);
+    width: 75%;
+    justify-content: center;
+    gap: 10px;
+
+    .card-wrapper {
+      width: 300px;
+      display: grid;
+      justify-content: center;
+
+      .card {
+        width: 300px;
+        height: 425px;
+
+        .card-header {
+
+        }
+
+        .card-image-wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 165px;
+
+          img {
+            max-width: 285px;
+            max-height: 160px;
+          }
+
+        }
+
+        .card-body {
+
+          .card-description {
+            display: flex;
+            align-items: center;
+            height: 72px;
+          }
+
+          .card-site-link {
+            display: flex;
+            justify-content: center;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}

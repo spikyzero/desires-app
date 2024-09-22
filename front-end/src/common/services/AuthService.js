@@ -18,6 +18,7 @@ class AuthService {
             }
             const data = await response.json();
             localStorage.setItem('jwt', data.token);
+            localStorage.setItem('userId', data.userDTO.id);
             return data;
         } catch (error) {
             console.error('Login error:', error);
@@ -27,6 +28,7 @@ class AuthService {
 
     static logout() {
         localStorage.removeItem('jwt');
+        localStorage.removeItem('userId');
     }
 
     static getToken() {
@@ -35,6 +37,10 @@ class AuthService {
 
     static isAuthenticated() {
         return !!localStorage.getItem('jwt');
+    }
+
+    static getUserId() {
+        return localStorage.getItem('userId');
     }
 
 }

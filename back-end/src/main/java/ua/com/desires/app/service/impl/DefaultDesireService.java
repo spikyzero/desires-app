@@ -24,9 +24,11 @@ public class DefaultDesireService implements DesireService {
 
     @Override
     public void saveDesire(Desire desire, MultipartFile image) {
-        String fileName = desire.getName().toLowerCase().replace(" ", "-");
-        String imagePath = fileService.uploadFile(image, fileName);
-        desire.setImageURL(imagePath);
+        if (image != null) {
+            String fileName = desire.getName().toLowerCase().replace(" ", "-");
+            String imagePath = fileService.uploadFile(image, fileName);
+            desire.setImageURL(imagePath);
+        }
         desireRepository.save(desire);
     }
 

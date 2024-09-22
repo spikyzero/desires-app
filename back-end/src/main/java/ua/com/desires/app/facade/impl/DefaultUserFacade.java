@@ -47,6 +47,13 @@ public class DefaultUserFacade implements UserFacade {
     }
 
     @Override
+    public UserDTO findUserByEmail(String email) {
+        return userService.findUserByEmail(email)
+                .map(userMapper::toUserDTO)
+                .orElseThrow(UserNotFoundException::new);
+    }
+
+    @Override
     public List<UserDTO> findAllUsers() {
         return userService.findAllUsers().stream()
                 .map(userMapper::toUserDTO)

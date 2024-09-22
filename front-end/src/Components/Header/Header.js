@@ -24,8 +24,7 @@ export function Header() {
                 </a>
                 <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="/" className="nav-link px-2 link-dark">Home</a></li>
-                    <li><a href="#" className="nav-link px-2 link-secondary">Test1</a></li>
-                    <li><a href="#" className="nav-link px-2 link-secondary">Test2</a></li>
+                    <li><a href="/desires" className="nav-link px-2 link-dark">Desires</a></li>
                 </ul>
                 <div className="col-md-3 text-end">
                     {!isAuthenticated ? (

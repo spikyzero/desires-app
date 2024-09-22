@@ -12,6 +12,8 @@ public interface UserFacade {
 
     UserDTO findUserById(Long id);
 
+    UserDTO findUserByEmail(String email);
+
     List<UserDTO> findAllUsers();
 
     UserDTO updateUser(Long id, UserUpdateForm userForm);

@@ -10,9 +10,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
+import ua.com.desires.app.controller.dto.UserDTO;
 import ua.com.desires.app.controller.form.user.UserLoginForm;
 import ua.com.desires.app.controller.response.ApiResponse;
 import ua.com.desires.app.controller.response.JwtResponse;
+import ua.com.desires.app.facade.UserFacade;
 import ua.com.desires.app.webtoken.CustomUserDetailsService;
 import ua.com.desires.app.webtoken.JwtService;
 
@@ -23,12 +25,14 @@ public class AuthenticationController {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
     private final CustomUserDetailsService customUserDetailsService;
+    private final UserFacade userFacade;
 
     @Autowired
-    public AuthenticationController(AuthenticationManager authenticationManager, JwtService jwtService, CustomUserDetailsService customUserDetailsService) {
+    public AuthenticationController(AuthenticationManager authenticationManager, JwtService jwtService, CustomUserDetailsService customUserDetailsService, UserFacade userFacade) {
         this.authenticationManager = authenticationManager;
         this.jwtService = jwtService;
         this.customUserDetailsService = customUserDetailsService;
+        this.userFacade = userFacade;
     }
 
     @GetMapping("/home")
@@ -55,8 +59,9 @@ public class AuthenticationController {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginForm.getEmail(), loginForm.getPassword()));
             if (authentication.isAuthenticated()) {
+                UserDTO userDTO = userFacade.findUserByEmail(loginForm.getEmail());
                 String token = jwtService.generateToken(customUserDetailsService.loadUserByUsername(loginForm.getEmail()));
-                return ResponseEntity.ok(new JwtResponse(token));
+                return ResponseEntity.ok(new JwtResponse(token, userDTO));
             }
             return new ResponseEntity<>(new ApiResponse("Not authenticated"), HttpStatus.UNAUTHORIZED);
         } catch (AuthenticationException e) {
