@@ -1,48 +1,79 @@
 .desires-page-wrapper {
+  background-color: rgb(240, 240, 240);
 
-  .cards-wrapper {
-    background-color: rgb(240, 240, 240);
-    width: 75%;
+  .header-wrapper {
+    width: 100%;
+    height: 50px;
+  }
+
+  .row {
+    width: 100%;
     justify-content: center;
-    gap: 10px;
 
-    .card-wrapper {
-      width: 300px;
-      display: grid;
+    .filter-wrapper {
+      width: 15%;
+      background-color: #dee2e6;
       justify-content: center;
+      display: grid;
 
-      .card {
-        width: 300px;
-        height: 425px;
+      .filter {
+        margin-top: 30px;
 
-        .card-header {
-
-        }
-
-        .card-image-wrapper {
+        .reset-button{
+          margin-top: 20px;
           display: flex;
           justify-content: center;
-          align-items: center;
-          height: 165px;
-
-          img {
-            max-width: 285px;
-            max-height: 160px;
-          }
-
+          padding-bottom: 30px;
         }
 
-        .card-body {
+      }
 
-          .card-description {
-            display: flex;
-            align-items: center;
-            height: 72px;
+    }
+
+    .cards-wrapper {
+      width: 75%;
+      justify-content: center;
+      gap: 20px;
+
+      .card-wrapper {
+        width: 300px;
+        display: grid;
+        justify-content: center;
+
+        .card {
+          width: 300px;
+          height: 425px;
+
+          .card-header {
+
           }
 
-          .card-site-link {
+          .card-image-wrapper {
             display: flex;
             justify-content: center;
+            align-items: center;
+            height: 165px;
+
+            img {
+              max-width: 285px;
+              max-height: 160px;
+            }
+
+          }
+
+          .card-body {
+
+            .card-description {
+              display: flex;
+              align-items: center;
+              height: 72px;
+            }
+
+            .card-site-link {
+              display: flex;
+              justify-content: center;
+            }
+
           }
 
         }
