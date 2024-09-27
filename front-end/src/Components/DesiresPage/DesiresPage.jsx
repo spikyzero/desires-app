@@ -3,6 +3,7 @@ import DesireService from "../../common/services/DesireService";
 import AuthService from "../../common/services/AuthService";
 import DesiresFilter from "./DesiresFilter";
 import DesiresCards from "./DesiresCards";
+import DesiresHeader from "./DesiresHeader";
 
 import './desires-page.scss';
 
@@ -62,9 +63,7 @@ export function DesiresPage() {
 
     return (
         <div className="desires-page-wrapper">
-            <div className="header-wrapper">
-                {error && <p className="text-danger text-center">{error}</p>}
-            </div>
+            <DesiresHeader error={error}/>
             <div className="row">
                 <DesiresFilter
                     filterPriority={filterPriority}
@@ -75,8 +74,7 @@ export function DesiresPage() {
                 />
                 <DesiresCards desires={filteredDesires}/>
             </div>
-            <div className="header-wrapper">
-            </div>
+            <div className="desires-header-wrapper"/>
         </div>
     );
 
