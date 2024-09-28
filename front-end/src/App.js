@@ -5,6 +5,7 @@ import Header from "./Components/Header/Header";
 import AuthPage from "./Components/Auth/AuthPage";
 import HomePage from "./Components/HomePage/HomePage";
 import DesiresPage from "./Components/DesiresPage/DesiresPage";
+import DesiresCreatePage from "./Components/DesiresCreatePage/DesiresCreatePage";
 import ProtectedLoginRoutes from "./Components/ProtectedRoutes/ProtectedLoginRoutes";
 import ProtectedNotLoginRoutes from "./Components/ProtectedRoutes/ProtectedNotLoginRoutes";
 
@@ -20,6 +21,7 @@ function App() {
                 </Route>
                 <Route element={<ProtectedLoginRoutes/>}>
                     <Route path="/desires" element={<DesiresPage/>}/>
+                    <Route path="/desire/create" element={<DesiresCreatePage/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

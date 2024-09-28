@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 export function DesiresHeader({error}) {
 
@@ -10,9 +11,11 @@ export function DesiresHeader({error}) {
             </div>
             <div className="desires-header-container">
                 <div className="add-desires-button">
-                    <button className="btn btn-primary btn-lg">
-                        +
-                    </button>
+                    <Link to="/desire/create">
+                        <button className="btn btn-primary btn-lg">
+                            +
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>
